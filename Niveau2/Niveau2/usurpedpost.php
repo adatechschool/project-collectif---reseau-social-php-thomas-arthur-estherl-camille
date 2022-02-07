@@ -48,7 +48,7 @@ session_start();
                      * Récupération de la liste des auteurs
                      */
                     $listAuteurs = [];
-                    $laQuestionEnSql = "SELECT * FROM `users`";
+                    $laQuestionEnSql = "SELECT * FROM users";
                     $lesInformations = $mysqli->query($laQuestionEnSql);
                     while ($user = $lesInformations->fetch_assoc())
                     {
@@ -78,15 +78,15 @@ session_start();
                         $authorId = intval($mysqli->real_escape_string($authorId));
                         $postContent = $mysqli->real_escape_string($postContent);
                         //Etape 4 : construction de la requete
-                        $lInstructionSql = "INSERT INTO `posts` "
-                                . "(`id`, `user_id`, `content`, `created`, `permalink`, `post_id`) "
+                        $lInstructionSql = "INSERT INTO posts "
+                                . "(id, user_id, content, created, permalink, post_id) "
                                 . "VALUES (NULL, "
-                                . "" . $authorId . ", "
+                                . $authorId . ", "
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
                                 . "'', "
                                 . "NULL);"
-                                . "";
+                                ;
                         echo $lInstructionSql;
                         // Etape 5 : execution
                         $ok = $mysqli->query($lInstructionSql);
