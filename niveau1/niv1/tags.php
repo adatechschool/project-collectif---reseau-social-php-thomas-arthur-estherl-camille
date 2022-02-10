@@ -52,16 +52,14 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé XXX
+                        le mot-clé <?php echo $tag['label'] ?> 
                         (n° <?php echo $tagId ?>)
                     </p>
-
                 </section>
             </aside>
             <main>
@@ -96,8 +94,6 @@
                  */
                 while ($post = $lesInformations->fetch_assoc())
                 {
-
-                    
                     ?>                
                     <article>
                         <h3>
@@ -115,9 +111,6 @@
                         </footer>
                     </article>
                 <?php } ?>
-                
-
-
             </main>
         </div>
     </body>
