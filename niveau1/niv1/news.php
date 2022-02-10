@@ -105,16 +105,13 @@
                         </div>
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>
-                        <!--coeur avec le nombre de likes -->
+                            <a href="">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php
                     // avec le <?php ci-dessus on retourne en mode php 
                 }// cette accolade ferme et termine la boucle while ouverte avant.
                 ?>
-
-
             </main>
         </div>
     </body>
