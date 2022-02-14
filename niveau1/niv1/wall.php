@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -14,6 +17,7 @@
                 <a href="wall.php?user_id=5">Mur</a>
                 <a href="feed.php?user_id=5">Flux</a>
                 <a href="tags.php?tag_id=1">Mots-clés</a>
+                <a href="login.php">Login</a>
             </nav>
             <nav id="user">
                 <a href="#">Profil</a>
@@ -63,9 +67,18 @@
             </aside>
             <main>
                 <?php
+                if ($userId == $_SESSION['connected_id']) {
+                ?>
+                
+                <form action="usurpedpost.php" method="post">
+                        <input type='submit' value= "Ecrire un nouveau post"> 
+                    </form>
+                 
+                <?php }
                 /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
+                 * Etape 3: récupérer tous les messages de l'utilisatrice 
                  */
+
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -100,7 +113,7 @@
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>,
+                            <a href="">#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>
