@@ -22,7 +22,7 @@ USE `socialnetwork` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `socialnetwork`.`users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL AUTO_INCREMENT,
   `password` VARCHAR(255) NOT NULL,
   `alias` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
