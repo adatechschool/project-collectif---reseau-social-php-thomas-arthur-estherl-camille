@@ -61,6 +61,7 @@
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -99,7 +100,7 @@
                         <h3>
                             <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address> par <?php echo $post['author_name'] ?></address>
+                        <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><address> par <?php echo $post['author_name'] ?></address></a>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>

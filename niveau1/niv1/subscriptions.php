@@ -60,8 +60,8 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3>Pseudo: <?php echo $user['alias'] ?></h3>
-                    <p>id:<?php echo $user['id'] ?></p>                    
+                    <a href="wall.php?user_id=<?php echo $user['id']?>"><h3>Pseudo: <?php echo $user['alias'] ?></h3></a>
+                     <p>id:<?php echo $user['id'] ?></p>                    
                 </article>
                 <?php } ?>
             </main>

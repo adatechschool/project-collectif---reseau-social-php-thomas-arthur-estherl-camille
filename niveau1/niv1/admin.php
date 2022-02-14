@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <title>ReSoC - Administration</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="./style.css"/>
+
     </head>
     <body>
         <header>
@@ -95,7 +96,7 @@
                 {
                     ?>
                     <article>
-                        <h3><?php echo $tag['alias'] ?></h3>
+                        <a href="wall.php?user_id=<?php echo $tag['id'] ?>"><h3><?php echo $tag['alias'] ?></h3></a
                         <p><?php echo $tag['id'] ?></p>
                         <nav>
                             <a href="wall.php?user_id=<?php echo $tag['id'] ?>">Mur</a>

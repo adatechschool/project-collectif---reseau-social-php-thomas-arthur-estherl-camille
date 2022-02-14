@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <img src="resoc.jpg" alt="Logo de notre réseau social"/>
+            <a href="admin.php"><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
                 <a href="wall.php?user_id=5">Mur</a>
@@ -94,8 +94,8 @@
                         <h3>
                             <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
                         </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
-                        <div>
+                        <a href="wall.php?user_id=<?php echo $userId ?>"><address> par <?php echo $post['author_name'] ?></address></a>
+                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>                                            
                         <footer>

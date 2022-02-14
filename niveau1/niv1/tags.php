@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <title>ReSoC - Les message par mot-clé</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="./style.css"/>
     </head>
+
     <body>
         <header>
-            <img src="resoc.jpg" alt="Logo de notre réseau social"/>
+        <a href="admin.php"><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
+
             <nav id="menu">
                 <a href="news.php">Actualités</a>
                 <a href="wall.php?user_id=5">Mur</a>
@@ -69,6 +71,7 @@
                  */
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -99,10 +102,9 @@
                         <h3>
                         <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
+                        <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><address> par <?php echo $post['author_name'] ?></address></a>
                         <div>
                             <p><?php echo $post['content'] ?></p>
-                            <p>Ceci est un autre paragraphe</p>
                             <p>#<?php echo $post['taglist'] ?></p>
                         </div>                                            
                         <footer>
