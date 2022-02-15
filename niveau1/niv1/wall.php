@@ -67,6 +67,14 @@ session_start();
             </aside>
             <main>
                 <?php
+                if ($userId != $_SESSION['connected_id']){
+                ?> 
+                <button type="button">Suivre cette personne<?php ?></button> 
+                <form action="followers.php" method="post">
+                        <input type='submit' value= "Suivre user"> 
+                    </form>
+                <?php }
+                //écrire un nouveau post avec connexion vérifiée
                 if ($userId == $_SESSION['connected_id']) {
                 ?>
                 
@@ -78,6 +86,7 @@ session_start();
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice 
                  */
+                    
 
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
