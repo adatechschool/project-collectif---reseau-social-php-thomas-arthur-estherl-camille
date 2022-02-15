@@ -67,26 +67,26 @@ session_start();
             </aside>
             <main>
                 <?php
-                if ($userId != $_SESSION['connected_id']){
-                ?> 
-                <button type="button">Suivre cette personne<?php ?></button> 
-                <form action="followers.php" method="post">
-                        <input type='submit' value= "Suivre user"> 
-                    </form>
-                <?php }
-                //écrire un nouveau post avec connexion vérifiée
-                if ($userId == $_SESSION['connected_id']) {
-                ?>
-                
-                <form action="usurpedpost.php" method="post">
-                        <input type='submit' value= "Ecrire un nouveau post"> 
-                    </form>
-                 
-                <?php }
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice 
                  */
-                    
+                $enCoursFollow = isset($_POST['Follow']);
+                if ($enCoursFollow){
+                $suivreUnePersonne = "INSERT INTO followers "
+                ."(id, followed_user_id, following_user_id)" 
+                . "VALUES (NULL, "
+                . $userId . ", "
+                . "'" . $_SESSION['connected_id'] . "')"
+                ;
+                $ok = $mysqli->query($suivreUnePersonne);
+                if ( ! $ok)
+                {
+                    echo("Échec de la requete : " . $mysqli->error);
+                }
+                else {
+                    echo("Tout marche !!");
+                }
+            }
 
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
@@ -105,7 +105,7 @@ session_start();
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
+                
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
@@ -126,6 +126,23 @@ session_start();
                         </footer>
                     </article>
                 <?php } ?>
+                <?php
+                if (isset ($_SESSION['connected_id']) AND $userId != $_SESSION['connected_id']){
+                    //faire +1 dans les suiveurs et +1 dans les abonnements de la personne connectée
+                ?> 
+                <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                        <input type="hidden" name="Follow" value= "True">
+                        <input type='submit' value= "Follow"> 
+                </form> 
+                <?php }
+                //écrire un nouveau post avec connexion vérifiée
+                if ($userId == $_SESSION['connected_id']) {
+                ?>
+                <form action="usurpedpost.php" method="post">
+                        <input type='submit' value= "Ecrire un nouveau post"> 
+                    </form>
+                <?php }
+                ?>
             </main>
         </div>
     </body>
