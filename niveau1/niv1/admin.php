@@ -32,9 +32,9 @@ session_start();
         </header>
 
         <?php
-        $userId =intval($_GET['user_id']);
+        $userId =intval($_SESSION['connected_id']);
         /**
-         * Etape 1: Ouvrir une connexion avec la base de donnée.
+         * Etape 1: Ouvrir une connexion aveNc la base de donnée.
          */
         // on va en avoir besoin pour la suite
         $mysqli = new mysqli("localhost", "root", "", "socialnetwork");

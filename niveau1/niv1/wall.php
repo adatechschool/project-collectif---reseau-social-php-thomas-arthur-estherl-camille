@@ -87,7 +87,24 @@ session_start();
                     echo("Vous suivez cette personne !");
                 }
             }
-
+            $likePost = isset($_POST['Like']);
+            if ($likePost = isset($_POST['Like'])
+            ){;
+            $ajoutLike = "INSERT INTO likes "
+            ."(id, user_id, post_id)" 
+            . "VALUES (NULL, "
+            . $userId . ", "
+            . "'" .$_POST['parent_id'] . "')"
+            ;
+            $ok = $mysqli->query($ajoutLike);
+            if ( ! $ok)
+            {
+                echo("Échec de la requete : " . $mysqli->error);
+            }
+            else {
+                echo("Vous avez likez ce poste !");
+            }
+        }
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -122,6 +139,10 @@ session_start();
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
+                            <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                        <input type="hidden" name="Like" value= "True">
+                        <input type='submit' value= "Like"> 
+                </form> 
                             <a href="">#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
