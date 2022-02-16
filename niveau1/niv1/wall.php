@@ -84,7 +84,7 @@ session_start();
                     echo("Échec de la requete : " . $mysqli->error);
                 }
                 else {
-                    echo("Tout marche !!");
+                    echo("Vous suivez cette personne !");
                 }
             }
 
