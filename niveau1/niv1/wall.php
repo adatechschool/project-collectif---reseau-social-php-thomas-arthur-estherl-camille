@@ -39,6 +39,7 @@ session_start();
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
+           // $postId= intval($_GET['post_id']);
             ?>
             <?php
             /**
@@ -93,8 +94,8 @@ session_start();
             $ajoutLike = "INSERT INTO likes "
             ."(id, user_id, post_id)" 
             . "VALUES (NULL, "
-            . $userId . ", "
-            . "'" .$_POST['parent_id'] . "')"
+            . $_SESSION['connected_id'] . ", "
+            . "'" .$likePost . "')"
             ;
             $ok = $mysqli->query($ajoutLike);
             if ( ! $ok)
@@ -139,7 +140,7 @@ session_start();
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                            <form action="wall.php?user_id=<?php echo $likePost?>" method="post">
                         <input type="hidden" name="Like" value= "True">
                         <input type='submit' value= "Like"> 
                 </form> 
