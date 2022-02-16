@@ -93,8 +93,8 @@ session_start();
             $ajoutLike = "INSERT INTO likes "
             ."(id, user_id, post_id)" 
             . "VALUES (NULL, "
-            . $userId . ", "
-            . "'" . $_GET['post_id'] . "')"
+            . $_SESSION['connected_id'] . ", "
+            . "'" . $likePost . "')"
             ;
             $ok = $mysqli->query($suivreUnePersonne);
             if ( ! $ok)
