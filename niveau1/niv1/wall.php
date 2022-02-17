@@ -39,7 +39,7 @@ session_start();
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
-           // $postId= intval($_GET['post_id']);
+            $postId= intval($_GET['post_id']);
             ?>
             <?php
             /**
@@ -95,7 +95,7 @@ session_start();
             ."(id, user_id, post_id)" 
             . "VALUES (NULL, "
             . $_SESSION['connected_id'] . ", "
-            . "'" .$likePost . "')"
+            . "'" .$postId . "')"
             ;
             $ok = $mysqli->query($ajoutLike);
             if ( ! $ok)
@@ -141,7 +141,7 @@ session_start();
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                            <form action="wall.php?user_id=<?php echo $postId?>" method="post">
                         <input type="hidden" name="Like" value= "True">
                         <input type='submit' value= "Like"> 
                 </form>
@@ -153,7 +153,7 @@ session_start();
                 if (isset ($_SESSION['connected_id']) AND $userId != $_SESSION['connected_id']){
                     //faire +1 dans les suiveurs et +1 dans les abonnements de la personne connectée
                 ?> 
-                <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                <form action="wall.php?user_id=<?php echo $postId?>" method="post">
                         <input type="hidden" name="Follow" value= "True">
                         <input type='submit' value= "Follow"> 
                 </form> 
