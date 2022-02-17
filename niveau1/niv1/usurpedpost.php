@@ -98,16 +98,16 @@ session_start();
                     <form action="usurpedpost.php" method="post">
                         <dl>
                             <dt><label for='auteur'>Auteur</label></dt>
-                            <dd><select name='auteur'>
+                            <dd><p name='auteur'>
                                     <?php
                                     foreach ($listAuteurs as $id => $alias)
-                                        if($id == $_SESSION['connected_id']){ 
+                                        if($id == $_SESSION['connected_id']){
                                         echo "<option value='$id'>$alias</option>";
                                         }
                                     ?>
-                                </select></dd>
+                                </p></dd>
                             <dt><label for='message'>Message</label></dt>
-                            <dd><textarea name='message'></textarea></dd>
+                            <dd><textarea name='message' style = 'width: 700px; height: 250px;'></textarea></dd>
                         </dl>
                         <input type='submit'>
                     </form>               

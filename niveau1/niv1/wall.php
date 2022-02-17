@@ -39,6 +39,7 @@ session_start();
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
+           // $postId= intval($_GET['post_id']);
             ?>
             <?php
             /**
@@ -93,8 +94,8 @@ session_start();
             $ajoutLike = "INSERT INTO likes "
             ."(id, user_id, post_id)" 
             . "VALUES (NULL, "
-            . $userId . ", "
-            . "'" .$_POST['parent_id'] . "')"
+            . $_SESSION['connected_id'] . ", "
+            . "'" .$likePost . "')"
             ;
             $ok = $mysqli->query($ajoutLike);
             if ( ! $ok)
@@ -105,6 +106,7 @@ session_start();
                 echo("Vous avez likez ce poste !");
             }
         }
+
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -142,8 +144,8 @@ session_start();
                             <form action="wall.php?user_id=<?php echo $userId?>" method="post">
                         <input type="hidden" name="Like" value= "True">
                         <input type='submit' value= "Like"> 
-                </form> 
-                            <a href="">#<?php echo $post['taglist'] ?></a>
+                </form>
+                        <a href="">#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>

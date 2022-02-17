@@ -110,6 +110,7 @@ session_start();
                         <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><address> par <?php echo $post['author_name'] ?></address></a>
                         <div>
                             <p><?php echo $post['content'] ?></p>
+                            
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>

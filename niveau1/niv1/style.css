@@ -90,6 +90,7 @@ body>header #user:hover ul{
     padding-left:1em;
     height: 80vh;
     overflow-y:  scroll;
+    padding-right: 1em;
 }
 #wrapper main article{
     background-color: #fff;
