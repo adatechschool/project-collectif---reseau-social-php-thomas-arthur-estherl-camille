@@ -39,7 +39,6 @@ session_start();
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
-            $postId= intval($_GET['post_id']);
             ?>
             <?php
             /**
@@ -88,14 +87,17 @@ session_start();
                     echo("Vous suivez cette personne !");
                 }
             }
-            $likePost = isset($_POST['Like']);
-            if ($likePost = isset($_POST['Like'])
-            ){;
+            
+            if ($likePost = isset($_POST['Like']))
+            {
+            $postId= intval($_GET['post_id']);
+            echo "user id =" . $_SESSION['connected_id'];
+            echo "post id =".$post['post_id'];
             $ajoutLike = "INSERT INTO likes "
             ."(id, user_id, post_id)" 
             . "VALUES (NULL, "
             . $_SESSION['connected_id'] . ", "
-            . "'" .$postId . "')"
+            . "'" .$like['post_id'] . "')"
             ;
             $ok = $mysqli->query($ajoutLike);
             if ( ! $ok)
@@ -106,7 +108,6 @@ session_start();
                 echo("Vous avez likez ce poste !");
             }
         }
-
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -128,6 +129,7 @@ session_start();
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
+                $postId= intval($_GET['post_id']);
                 while ($post = $lesInformations->fetch_assoc())
                 {
                     ?>                
@@ -141,19 +143,24 @@ session_start();
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <form action="wall.php?user_id=<?php echo $postId?>" method="post">
-                        <input type="hidden" name="Like" value= "True">
-                        <input type='submit' value= "Like"> 
-                </form>
+                           
                         <a href="">#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
+                
                 <?php } ?>
                 <?php
+                if (isset($_GET['post_id'])) {
+                    ?>
+                <form action="wall.php?post_id=<?php echo $post['posts.id'] ?>" method="post">
+                        <input type="hidden" name="Like" value= "True">
+                        <input type='submit' value= "Likes"> 
+                </form>
+                <?php } 
                 if (isset ($_SESSION['connected_id']) AND $userId != $_SESSION['connected_id']){
                     //faire +1 dans les suiveurs et +1 dans les abonnements de la personne connectée
                 ?> 
-                <form action="wall.php?user_id=<?php echo $postId?>" method="post">
+                <form action="wall.php?user_id=<?php echo $userId?>" method="post">
                         <input type="hidden" name="Follow" value= "True">
                         <input type='submit' value= "Follow"> 
                 </form> 
