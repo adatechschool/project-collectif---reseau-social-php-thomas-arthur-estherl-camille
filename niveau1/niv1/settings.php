@@ -28,7 +28,6 @@ session_start();
                     <li><a href="subscriptions.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Mes abonnements</a></li>
                 </ul>
 
-
             </nav>
         </header>
         <div id="wrapper" class='profile'>

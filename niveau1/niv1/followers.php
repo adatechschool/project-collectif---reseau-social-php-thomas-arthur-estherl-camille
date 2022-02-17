@@ -27,8 +27,6 @@ session_start();
                     <li><a href="followers.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Mes suiveurs</a></li>
                     <li><a href="subscriptions.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Mes abonnements</a></li>
                 </ul>
-
-
             </nav>
         </header>
         <div id="wrapper">          
@@ -39,7 +37,6 @@ session_start();
                     <p>Sur cette page vous trouverez la liste des personnes qui
                         suivent les messages de l'utilisatrice
                         n° <?php echo intval($_GET['user_id']) ?></p>
-
                 </section>
             </aside>
             <main class='contacts'>

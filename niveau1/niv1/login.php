@@ -18,7 +18,6 @@ session_start();
                 <a href="feed.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Flux</a>
                 <a href="tags.php?tag_id=1">Mots-clés</a>
                 <a href="login.php">Login</a>
-
             </nav>
             <nav id="user">
                 <a href="#">Profil</a>
@@ -27,12 +26,10 @@ session_start();
                     <li><a href="followers.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Mes suiveurs</a></li>
                     <li><a href="subscriptions.php?user_id=<?php echo $_SESSION['connected_id']  ?>">Mes abonnements</a></li>
                 </ul>
-
             </nav>
         </header>
 
         <div id="wrapper" >
-
             <aside>
                 <h2>Présentation</h2>
                 <p>Bienvenu sur notre réseau social.</p>
@@ -100,9 +97,9 @@ session_start();
                     </form>
                     <p>
                         Pas de compte?
+                        <br>
                         <a href='registration.php'>Inscrivez-vous.</a>
                     </p>
-
                 </article>
             </main>
         </div>

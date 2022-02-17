@@ -70,8 +70,9 @@ session_start();
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice 
                  */
+                //fonction pour requête SQL pour le follow
                 $enCoursFollow = isset($_POST['Follow']);
-                if ($enCoursFollow){
+                if ($enCoursFollow) {
                 $suivreUnePersonne = "INSERT INTO followers "
                 ."(id, followed_user_id, following_user_id)" 
                 . "VALUES (NULL, "
@@ -87,7 +88,7 @@ session_start();
                     echo("Vous suivez cette personne !");
                 }
             }
-            
+            //fonction pour requête SQL vers like de post
             if ($likePost = isset($_POST['Like']))
             {
             $postId= intval($_GET['post_id']);
@@ -143,20 +144,16 @@ session_start();
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                           
-                        <a href="">#<?php echo $post['taglist'] ?></a>
-                        </footer>
-                    </article>
-                
-                <?php } ?>
-                <?php
-                if (isset($_GET['post_id'])) {
-                    ?>
-                <form action="wall.php?post_id=<?php echo $post['posts.id'] ?>" method="post">
+                            <!--formulaire pour le like -->
+                            <form action="wall.php?post_id=<?php echo $post['like_number'] ?>" method="post">
                         <input type="hidden" name="Like" value= "True">
                         <input type='submit' value= "Likes"> 
                 </form>
-                <?php } 
+                        <a href="">#<?php echo $post['taglist'] ?></a>
+                        </footer>
+                    </article>
+                <?php } ?>
+                <?php 
                 if (isset ($_SESSION['connected_id']) AND $userId != $_SESSION['connected_id']){
                     //faire +1 dans les suiveurs et +1 dans les abonnements de la personne connectée
                 ?> 
